@@ -1,0 +1,147 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+header .navigation {
+    display: flex;
+    gap: 15px;
+}
+header .navigation a {
+    color: white;
+    text-decoration: none;
+}
+header .search-cart {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+header .search-cart input {
+    padding: 5px;
+}
+header .cart-icon {
+    font-size: 20px;
+}
+
+/* Sidebar and Main Layout */
+main {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+    gap: 20px;
+}
+.sidebar {
+    width: 25%;
+    background: #f9f9f9;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.sidebar h3 {
+    margin-top: 0;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+.product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+.product img {
+    max-width: 100%;
+    height: auto;
+}
+.product h4 {
+    margin: 10px 0 5px;
+}
+.product button {
+    background: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+.product button:hover {
+    background: #0056b3;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+.pagination button {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+}
+.pagination button:hover {
+    background: #ddd;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    background: #333;
+    color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    .pagination {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .sidebar {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

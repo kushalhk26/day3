@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        .calculator {
+            width: 300px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator input {
+            width: 100%;
+            height: 50px;
+            font-size: 1.2em;
+            text-align: right;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .buttons button {
+            height: 50px;
+            font-size: 1em;
+            border: none;
+            background: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .buttons button:hover {
+            background: #0056b3;
+        }
+
+        .buttons button.clear {
+            background: #f44336;
+        }
+
+        .buttons button.clear:hover {
+            background: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button onclick="setOperator('/')">/</button>
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button onclick="setOperator('*')">x</button>
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button onclick="setOperator('-')">-</button>
+            <button onclick="appendNumber('0')">0</button>
+            <button onclick="appendNumber('.')">.</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="setOperator('+')">+</button>
+            <button class="clear" onclick="clearDisplay()">C</button>
+        </div>
+    </div>
+
+    <script>
+        let currentInput = '';
+        let operator = null;
+        let previousValue = null;
+
+        const display = document.getElementById('display');
+
+        function appendNumber(number) {
+            currentInput += number;
+            updateDisplay();
+        }
+
+        function setOperator(op) {
+            if (currentInput === '') return;
+            if (previousValue !== null) {
+                calculate();
+            }
+            operator = op;
+            previousValue = stringToNumber(currentInput);
+            currentInput = '';
+        }
+
+        function calculate() {
+            if (operator === null || currentInput === '') return;
+            const currentValue = stringToNumber(currentInput);
+            let result;
+
+            switch (operator) {
+                case '+':
+                    result = add(previousValue, currentValue);
+                    break;
+                case '-':
+                    result = subtract(previousValue, currentValue);
+                    break;
+                case '*':
+                    result = multiply(previousValue, currentValue);
+                    break;
+                case '/':
+                    result = divide(previousValue, currentValue);
+                    break;
+                default:
+                    return;
+            }
+
+            currentInput = numberToString(result);
+            operator = null;
+            previousValue = null;
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            currentInput = '';
+            operator = null;
+            previousValue = null;
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            display.value = currentInput || '0';
+        }
+
+        // Manual Arithmetic Functions
+        function add(a, b) {
+            let sum = a;
+            while (b > 0) {
+                sum++;
+                b--;
+            }
+            while (b < 0) {
+                sum--;
+                b++;
+            }
+            return sum;
+        }
+
+        function subtract(a, b) {
+            return add(a, -b);
+        }
+
+        function multiply(a, b) {
+            let product = 0;
+            const positiveB = b > 0 ? b : -b;
+
+            for (let i = 0; i < positiveB; i++) {
+                product = add(product, a);
+            }
+            return b < 0 ? -product : product;
+        }
+
+        function divide(a, b) {
+            if (b === 0) return 'Error'; // Avoid division by zero
+            let quotient = 0;
+            let temp = a;
+            const negative = (a < 0) ^ (b < 0); // Check if the result is negative
+
+            if (a < 0) temp = -temp;
+            if (b < 0) b = -b;
+
+            while (temp >= b) {
+                temp = subtract(temp, b);
+                quotient = add(quotient, 1);
+            }
+
+            return negative ? -quotient : quotient;
+        }
+
+        // Manual String to Number Conversion
+        function stringToNumber(str) {
+            let num = 0;
+            let isNegative = false;
+
+            if (str[0] === '-') {
+                isNegative = true;
+                str = str.slice(1);
+            }
+
+            for (let i = 0; i < str.length; i++) {
+                const charCode = str[i].charCodeAt(0) - 48; // Get numeric value of the character
+                if (charCode >= 0 && charCode <= 9) {
+                    num = add(multiply(num, 10), charCode);
+                }
+            }
+
+            return isNegative ? -num : num;
+        }
+
+        // Manual Number to String Conversion
+        function numberToString(num) {
+            if (num === 0) return '0';
+            let str = '';
+            let isNegative = false;
+
+            if (num < 0) {
+                isNegative = true;
+                num = -num;
+            }
+
+            while (num > 0) {
+                const digit = divide(num, 10);
+                str = String.fromCharCode(add(subtract(num, multiply(digit, 10)), 48)) + str;
+                num = digit;
+            }
+
+            return isNegative ? '-' + str : str;
+        }
+    </script>
+</body>
+</html>

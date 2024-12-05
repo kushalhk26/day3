@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3x3 Image Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            width: 300px; /* Adjust width based on image size */
+            margin: 0 auto;
+        }
+        .image-box {
+            float: left;
+            width: 100px; /* Set width for each image box */
+            height: 100px; /* Set height for each image box */
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+        }
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            display: block; /* Ensure the image fills the box */
+        }
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="container clearfix">
+        <div class="image-box"><img src="https://www.shutterstock.com/shutterstock/photos/1032541603/display_1500/stock-photo-the-young-and-conceptual-image-of-a-large-stone-in-the-shape-of-the-human-brain-1032541603.jpg" alt="Image"></div>
+        <div class="image-box"><img src="https://i0.wp.com/picjumbo.com/wp-content/uploads/silhouette-of-a-guy-with-a-cap-at-red-sky-sunset-free-image.jpeg?h=800&quality=80" alt="Image"></div>
+        <div class="image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGwVd07rcBUxKVqf17F_Li5fy-a_zni7JuEQ&s" alt="Image"></div>
+        <div class="image-box"><img src="https://images.pexels.com/photos/3680219/pexels-photo-3680219.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Image"></div>
+        <div class="image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwsAn_T3aA0ZWjVoysDInUL7Aj0n3TZUamsQ&s" alt="Image"></div>
+        <div class="image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXEoHAXaCXue-AwEyuev4b1tEF0303kb9SEjC1OXRZ9sfjHjv2yS_CMI8waxIv70f_7Lg&usqp=CAU" alt="Image"></div>
+        <div class="image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRW76Uoole_PZ9xzWCzmKYnTa_YUyJTGOmHg&s" alt="Image"></div>
+        <div class="image-box"><img src="https://learn.canva.com/wp-content/uploads/2018/08/ComposeStunningImages16.jpg" alt="Image"></div>
+        <div class="image-box"><img src="https://images.pexels.com/photos/289998/pexels-photo-289998.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Image"></div>
+    </div>
+</body>
+</html>

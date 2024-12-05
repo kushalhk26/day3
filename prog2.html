@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3x3 Equal Image Grid</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+            grid-template-rows: repeat(3, 1fr);  /* 3 equal rows */
+            gap: 10px; /* Space between the grid items */
+            width: 300px; /* Total grid width */
+            height: 300px; /* Total grid height */
+        }
+        .image-box {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the cell without distortion */
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-box"><img src="https://media.istockphoto.com/id/1419410282/photo/silent-forest-in-spring-with-beautiful-bright-sun-rays.jpg?s=612x612&w=0&k=20&c=UHeb1pGOw6ozr6utsenXHhV19vW6oiPIxDqhKCS2Llk=" alt="Image"></div>
+        <div class="image-box"><img src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg" alt="Image"></div>
+        <div class="image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGQ5rl0J8n2myZkotIPC6Ay5DWIB0UcVXgW-I68792t41c5y4X9GhqnEBEsH6J5trX7Is&usqp=CAU" alt="Image"></div>
+        <div class="image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXvISWV--yWSsHVx9MeoMlK8a_iawaZDX9Bg&s" alt="Image"></div>
+        <div class="image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZyT_VoFsaAT3MKMR35JPoVzyepgQKj6LvHQCCDqHKFO7bwU6MrAz5k9Mglf9_1iwot6g&usqp=CAU" alt="Image"></div>
+        <div class="image-box"><img src="https://media.istockphoto.com/id/1467976886/photo/shopping-online-is-convenient-and-easy.jpg?s=612x612&w=0&k=20&c=MNpE1AKhYPe3cXqvYb6bSzEPrpZgc13D-fEPCXAqmhc=" alt="Image"></div>
+        <div class="image-box"><img src="https://tinypng.com/images/social/website.jpg" alt="Image"></div>
+        <div class="image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE_Ys-x5FejCwJpsdqXPRgriNYXj7N3w_yFmAcMdB8eFLXoejSDqyd-lQOTzc66RFG22Q&usqp=CAU" alt="Image"></div>
+        <div class="image-box"><img src="https://tinypng.com/static/images/panda_with_cord.webp" alt="Image"></div>
+    </div>
+</body>
+</html>
